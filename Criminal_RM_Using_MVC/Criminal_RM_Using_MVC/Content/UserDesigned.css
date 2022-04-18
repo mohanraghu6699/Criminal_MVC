@@ -1,0 +1,24 @@
+﻿/*.image {
+    background-image: url(/Images/Police.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;*//*
+    -webkit-filter: blur(8px);*/
+/*}
+.blur {
+    backdrop-filter: blur(8px);
+    height:500px;
+}*/
+#leftbox {
+    float: left;
+    width: 45%;
+}
+
+#rightbox {
+    float: right;
+    width: 55%;
+}
+
+figcaption{
+    font-size:20px;
+}

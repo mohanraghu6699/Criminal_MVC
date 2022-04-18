@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Criminal_RM_Using_MVC.Models.Jail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Jail_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pincode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jailer)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jail_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pincode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jailer)
+        </td>
+        <td>
+            @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Jail_ID }) <text>|</text>
+            }
+            @Html.ActionLink("Details", "Details", new { id = item.Jail_ID }) |
+            @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.Jail_ID })
+            }
+        </td>
+    </tr>
+}
+
+</table>

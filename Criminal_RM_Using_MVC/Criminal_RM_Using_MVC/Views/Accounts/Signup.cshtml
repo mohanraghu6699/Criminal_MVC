@@ -1,0 +1,42 @@
+﻿@model Criminal_RM_Using_MVC.Models.User
+
+@{
+    ViewBag.Title = "Signup";
+    <link href="~/Styles/LoginStyle.css" rel="stylesheet" />
+}
+
+<h2>SignUp</h2>
+
+<div class="wrapper">
+    <div class="logo"> <img src="../Images/Police.jpg" alt=""> </div>
+    <div class="text-center mt-4 name"> Criminal Records </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @placeholder = "Username", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new {@type="password", @placeholder = "Password", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            @Html.EditorFor(model => model.Confirm_Password, new { htmlAttributes = new { @type = "password", @placeholder = "Password", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Confirm_Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-user"></span>
+            @Html.DropDownList("Position_id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Position_id, "", new { @class = "text-danger" })
+        </div>
+        <input type="submit" value="Signup" class="btn btn-default" />
+    }
+
+<div class="text-center fs-6">
+    @Html.ActionLink("Already a User ? Login", "Login")
+</div>
+</div>
