@@ -2,14 +2,15 @@
 
 @{
     ViewBag.Title = "Index";
+    <link href="~/Styles/TableStyle.css" rel="stylesheet" />
 }
 
-<h2>Index</h2>
+<h2>Users</h2>
 
 <p>
 
 </p>
-<table class="table table-striped">
+<table>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.User_Name)
@@ -20,21 +21,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position.Position_Name)
-        </td>
-        <td>
-            @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.User_ID })
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.Position_Name)
+            </td>
+            <td>
+                @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
+                {
+                    <button onclick="location.href='@Url.Action("Delete", "Users",new { id = item.User_ID})';return false;"><span class="glyphicon glyphicon-trash icons"></span></button>
+                }
+            </td>
+        </tr>
+    }
 
 </table>

@@ -1,0 +1,53 @@
+﻿.icons,button {
+	color:ivory;
+	font-size: 20px;
+	background-color: rgba(255,255,255,0.2);
+	border-radius:40%;
+}
+button:hover{
+	background-color:white;
+}
+button:hover .icons{
+	color:black;
+}
+.createIcon{
+	color:black;
+	background-color:white;
+	border-radius:10%;
+}
+.createIcon:hover{
+	background-color:bisque;
+}
+a.myclass {
+	color:ivory;
+	font-size: 20px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+tbody {
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+}
+thead th {
+		background-color: #55608f;
+	}
+
+tbody tr:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+		

@@ -2,59 +2,66 @@
 
 @{
     ViewBag.Title = "Index";
+    <link href="~/Styles/TableStyle.css" rel="stylesheet" />
 }
 
-<h2>Index</h2>
+<h2>Jails</h2>
 
 <p>
     @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
     {
-        @Html.ActionLink("Create New", "Create")
+    <div style="margin-left:10%">
+        <button class="createIcon" onclick="location.href='@Url.Action("Create", "Jails")';return false;">Create New</button>
+    </div>
     }
 </p>
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Jail_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pincode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Jailer)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Jail_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pincode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Jailer)
-        </td>
-        <td>
-            @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.Jail_ID }) <text>|</text>
-            }
-            @Html.ActionLink("Details", "Details", new { id = item.Jail_ID }) |
-            @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.Jail_ID })
-            }
-        </td>
-    </tr>
-}
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Jail_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pincode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jailer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jail_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pincode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jailer)
+                </td>
+                <td>
+                    @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
+                    {
+                    <button onclick="location.href='@Url.Action("Edit", "Jails",new { id = item.Jail_ID})';return false;"><span class="glyphicon glyphicon-edit icons"></span></button>
+                    }
+                    <button onclick="location.href='@Url.Action("Details", "Jails",new { id = item.Jail_ID})';return false;"><span class="glyphicon glyphicon-eye-open icons"></span></button>
+                    @if (User.IsInRole("DCP") || User.IsInRole("JCP") || User.IsInRole("ACP"))
+                    {
+                    <button onclick="location.href='@Url.Action("Delete", "Jails",new { id = item.Jail_ID})';return false;"><span class="glyphicon glyphicon-trash icons"></span></button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>

@@ -13,5 +13,21 @@ namespace Criminal_RM_Using_MVC.Controllers
         {
             return View();
         }
+        public ActionResult PageNotFoundError()
+        {
+            return View();
+        }
+        public ActionResult InternalServerError()
+        {
+            return View();
+        }
+        public ActionResult UnauthorizedError()
+        {
+            return View();
+        }
+        public ActionResult GenericError()
+        {
+            return View();
+        }
     }
 }

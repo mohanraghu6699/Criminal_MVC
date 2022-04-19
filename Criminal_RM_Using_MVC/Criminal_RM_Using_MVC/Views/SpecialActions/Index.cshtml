@@ -2,11 +2,16 @@
 
 @{
     ViewBag.Title = "Index";
+    <style>
+        .image-round{
+            border-radius:50px;
+        }
+    </style>
 }
 <div id="boxes">
     <div id="leftbox">
         <h2>Victim</h2>
-        <img src="../@ViewBag.Victim.Image" width="300px" height="380px" />
+        <img class="image-round" src="../@ViewBag.Victim.Image" width="300px" height="380px" />
         <figcaption>@ViewBag.Victim.Victim_Name</figcaption>
     </div>
 
@@ -15,7 +20,7 @@
         @foreach (var item in Model)
         {
             <div class="col-lg-4">
-                <img src="../@Html.DisplayFor(modelItem => item.Image)" width="100px" height="120px" />
+                <img class="image-round" src="../@Html.DisplayFor(modelItem => item.Image)" width="100px" height="120px" />
                 <figcaption>@Html.DisplayFor(modelItem => item.Criminal_Name)</figcaption>
             </div>
         }

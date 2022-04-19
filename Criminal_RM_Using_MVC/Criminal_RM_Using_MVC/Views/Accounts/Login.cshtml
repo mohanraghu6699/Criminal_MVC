@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Login";
     <link href="~/Styles/LoginStyle.css" rel="stylesheet" />
+
 }
 <h2>Login</h2>
 <div class="wrapper">
@@ -12,18 +13,18 @@
     {
         @Html.AntiForgeryToken()
         <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
+            <span class="glyphicon glyphicon-user"></span>
             @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @placeholder = "Username", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "text-danger" })
         </div>
         <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
+            <span class="glyphicon glyphicon-lock"></span>
             @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new { @placeholder = "Password", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
         </div>
         <input type="submit" value="Login" class="btn btn-default" />
     }
-<div class="text-center fs-6">
-    @Html.ActionLink("Click here to Register", "Signup")
-</div>
+    <div class="text-center fs-6">
+        @Html.ActionLink("Click here to Register", "Signup")
+    </div>
 </div>

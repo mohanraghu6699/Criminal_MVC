@@ -2,80 +2,91 @@
 
 @{
     ViewBag.Title = "Index";
+    <link href="~/Styles/SearchStyle.css" rel="stylesheet" />
+    <link href="~/Styles/TableStyle.css" rel="stylesheet" />
 }
 
-<h2>Index</h2>
-
-<p>@if(!User.IsInRole("PC")){
-
-        @Html.ActionLink("Create New", "Create")
-    }
-</p>
+<h2>Criminals</h2>
 @using (@Html.BeginForm())
 {
-    <input class="form-control" type="search" name="SearchFilter" placeholder="Search Criminals" aria-label="Search">
-    <input class="btn btn-outline-success my-2" type="submit" value="Search">
+    <div class="search-box">
+        <button class="btn-search"><span class="glyphicon glyphicon-search"></span></button>
+        <input type="text" name="SearchFilter" class="input-search" placeholder="Search Criminals...">
+    </div>
 }
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Criminal_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DOB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Jail.Jail_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Victim.Victim_Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<p>
+    @if (!User.IsInRole("PC"))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Criminal_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DOB)
-            </td>
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.Image)" , width="80px" height="100px" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Jail.Jail_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Victim.Victim_Name)
-            </td>
-            <td>
-                @if (!(User.IsInRole("PC") || User.IsInRole("SI")))
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Criminal_ID }) <text>|</text>
-                }
-                @if (!User.IsInRole("PC"))
-                {
-                    @Html.ActionLink("Details", "Details", new { id = item.Criminal_ID })<text>|</text>
-                }
-                @if (User.IsInRole("ACP") || User.IsInRole("JCP") || User.IsInRole("DCP") || User.IsInRole("CP")
-                        || User.IsInRole("SP") || User.IsInRole("CI"))
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Criminal_ID })
-                }
-            </td>
-        </tr>
+        <div style="margin-left:10%">
+            <button class="createIcon" onclick="location.href='@Url.Action("Create", "Criminals")';return false;">Create New</button>
+        </div>
     }
+</p>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Criminal_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Jail.Jail_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Victim.Victim_Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Criminal_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DOB)
+                    </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.Image)" , width="80px" height="100px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jail.Jail_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Victim.Victim_Name)
+                    </td>
+                    <td>
+                        @if (!(User.IsInRole("PC") || User.IsInRole("SI")))
+                        {
+                            <button onclick="location.href='@Url.Action("Edit", "Criminals",new { id = item.Criminal_ID})';return false;"><span class="glyphicon glyphicon-edit icons"></span></button>
+                        }
+                        @if (!User.IsInRole("PC"))
+                        {
+                            <button onclick="location.href='@Url.Action("Details", "Criminals",new { id = item.Criminal_ID})';return false;"><span class="glyphicon glyphicon-eye-open icons"></span></button>
+                        }
+                        @if (User.IsInRole("ACP") || User.IsInRole("JCP") || User.IsInRole("DCP") || User.IsInRole("CP")
+                                || User.IsInRole("SP") || User.IsInRole("CI"))
+                        {
+                            <button onclick="location.href='@Url.Action("Delete", "Criminals",new { id = item.Criminal_ID})';return false;"><span class="glyphicon glyphicon-trash icons"></span></button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
 
 </table>
+</div>

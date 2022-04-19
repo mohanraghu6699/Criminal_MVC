@@ -221,6 +221,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Styles\LoginStyle.css" />
+    <Content Include="Styles\SearchStyle.css" />
+    <Content Include="Styles\TableStyle.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -264,6 +266,10 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Accounts\Signup.cshtml" />
+    <Content Include="Views\Errors\PageNotFoundError.cshtml" />
+    <Content Include="Views\Errors\InternalServerError.cshtml" />
+    <Content Include="Views\Errors\UnauthorizedError.cshtml" />
+    <Content Include="Views\Errors\GenericError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

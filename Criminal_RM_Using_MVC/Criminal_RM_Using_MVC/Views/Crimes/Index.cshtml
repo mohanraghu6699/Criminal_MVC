@@ -2,66 +2,74 @@
 
 @{
     ViewBag.Title = "Index";
+    <link href="~/Styles/SearchStyle.css" rel="stylesheet" />
+    <link href="~/Styles/TableStyle.css" rel="stylesheet" />
 }
 
-<h2>Index</h2>
-
+<h2>Crimes</h2>
+@using (@Html.BeginForm())
+{
+    <div class="search-box">
+        <button class="btn-search"><span class="glyphicon glyphicon-search"></span></button>
+        <input type="text" name="SearchFilter" class="input-search" placeholder="Search Crimes...">
+    </div>
+}
 <p>
     @if (!User.IsInRole("PC"))
     {
-        @Html.ActionLink("Create New", "Create")
+    <div style="margin-left:10%">
+        <button class="createIcon" onclick="location.href='@Url.Action("Create", "Crimes")';return false;">Create New</button>
+    </div>
     }
 
 </p>
-@using (@Html.BeginForm())
-{
-    <input class="form-control" type="search" name="SearchFilter" placeholder="Search Crimes" aria-label="Search">
-    <input class="btn btn-outline-success my-2" type="submit" value="Search">
-}
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Crime_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Officer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Officer_Position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Victim.Victim_Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table>
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crime_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Officer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Officer_Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Victim.Victim_Name)
-            </td>
-            <td>
-                @if (!User.IsInRole("PC"))
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Crime_ID }) <text>|</text>
-                }
-                @Html.ActionLink("Details", "Details", new { id = item.Crime_ID }) |
-                @if (!User.IsInRole("PC"))
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Crime_ID })
-                }
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Crime_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Officer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Officer_Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Victim.Victim_Name)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crime_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Officer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Officer_Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Victim.Victim_Name)
+                </td>
+                <td>
+                    @if (!User.IsInRole("PC"))
+                    {
+                    <button onclick="location.href='@Url.Action("Edit", "Crimes",new { id = item.Crime_ID})';return false;"><span class="glyphicon glyphicon-edit icons"></span></button>
+                    }
+                    <button onclick="location.href='@Url.Action("Details", "Crimes",new { id = item.Crime_ID})';return false;"><span class="glyphicon glyphicon-eye-open icons"></span></button>
+                    @if (!User.IsInRole("PC"))
+                    {
+                    <button onclick="location.href='@Url.Action("Delete", "Crimes",new { id = item.Crime_ID})';return false;"><span class="glyphicon glyphicon-trash icons"></span></button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
